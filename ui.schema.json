@@ -23,13 +23,13 @@
                "$ref": "#/definitions/element_types"
             },
             "size": {
-               "$ref": "#/definitions/element_size"
+               "$ref": "#/definitions/element_sizing/size"
             },
             "offset": {
-               "$ref": "#/definitions/element_offset"
+               "$ref": "#/definitions/element_sizing/offset"
             },
             "max_size": {
-               "$ref": "#/definitions/element_max_size"
+               "$ref": "#/definitions/element_sizing/max_size"
             }
          }
       },
@@ -99,87 +99,86 @@
             }
          ]
       },
-      "element_size": {
-         "description": "Size of the UI element.\nPossible values:\n\"default\" (Default value, equivalent to \"100%\")\n0 (Number of pixels)\n\"0px\" (Number of pixels. Used when combining a percentage-based value with a specific pixel value, e.g. \"75% + 12px\")\n\"0%\" (Percentage relative to the parent element)\n\"0%c\" (Percentage of the total width/height of the element's children)\n\"0%cm\" (Percentage of the width/height of the largest visible child of the element)\n\"0%sm\" (Percentage of the width/height of the sibling element)\n\"0%y\" (Percentage of the element's height)\n\"0%x\" (Percentage of the element's width)\n\"fill\" (Expands to fill the remaining width/height of the parent element)",
-         "anyOf": [
-            {
-               "type": "array",
-               "minItems": 2,
-               "maxItems": 2,
-               "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/sizing_pattern"
-                     },
-                     {
-                        "type": "number"
-                     }
-                  ]
+      "element_sizing": {
+         "size": {
+            "description": "Size of the UI element.\nPossible values:\n\"default\" (Default value, equivalent to \"100%\")\n0 (Number of pixels)\n\"0px\" (Number of pixels. Used when combining a percentage-based value with a specific pixel value, e.g. \"75% + 12px\")\n\"0%\" (Percentage relative to the parent element)\n\"0%c\" (Percentage of the total width/height of the element's children)\n\"0%cm\" (Percentage of the width/height of the largest visible child of the element)\n\"0%sm\" (Percentage of the width/height of the sibling element)\n\"0%y\" (Percentage of the element's height)\n\"0%x\" (Percentage of the element's width)\n\"fill\" (Expands to fill the remaining width/height of the parent element)",
+            "anyOf": [
+               {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": {
+                     "oneOf": [
+                        {
+                           "$ref": "#/definitions/element_sizing/pattern"
+                        },
+                        {
+                           "type": "number"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "type": "string",
+                  "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
+               },
+               {
+                  "type": "number"
                }
-            },
-            {
-               "type": "string",
-               "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
-            },
-            {
-               "type": "number"
-            }
-         ]
-      },
-      "element_offset": {
-         "description": "Position of the UI element relative to the parent UI element. It's TopLeft based meaning the coordinates [0, 0] start at the top left of the screen.\n`10` - pixels\n`\"10px\"` - pixels\n`\"50%\"` - Width/height of the parent element\n`\"50%x\"` - Width of the element\n`\"50%y\"` - Height of the element",
-         "anyOf": [
-            {
-               "type": "array",
-               "minItems": 2,
-               "maxItems": 2,
-               "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/sizing_pattern"
-                     },
-                     {
-                        "type": "number"
-                     }
-                  ]
+            ]
+         },
+         "offset": {
+            "description": "Position of the UI element relative to the parent UI element. It's TopLeft based meaning the coordinates [0, 0] start at the top left of the screen.\n`10` - pixels\n`\"10px\"` - pixels\n`\"50%\"` - Width/height of the parent element\n`\"50%x\"` - Width of the element\n`\"50%y\"` - Height of the element",
+            "anyOf": [
+               {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": {
+                     "oneOf": [
+                        {
+                           "$ref": "#/definitions/element_sizing/pattern"
+                        },
+                        {
+                           "type": "number"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "type": "string",
+                  "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
+               },
+               {
+                  "type": "number"
                }
-            },
-            {
-               "type": "string",
-               "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
-            },
-            {
-               "type": "number"
-            }
-         ]
-      },
-      "element_max_size": {
-         "type": "array",
-         "description": "Maximum size of the UI element can have",
-         "anyOf": [
-            {
-               "type": "array",
-               "minItems": 2,
-               "maxItems": 2,
-               "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/sizing_pattern"
-                     },
-                     {
-                        "type": "number"
-                     }
-                  ]
+            ]
+         },
+         "max_size": {
+            "type": "array",
+            "description": "Maximum size of the UI element can have",
+            "anyOf": [
+               {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": {
+                     "oneOf": [
+                        {
+                           "$ref": "#/definitions/element_sizing/pattern"
+                        },
+                        {
+                           "type": "number"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "type": "string",
+                  "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
                }
-            },
-            {
-               "type": "string",
-               "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
-            }
-         ]
-      },
-      "sizing_pattern": {
-         "type": "string",
+            ]
+         },
          "pattern": "^(?:fill|default|[0-9]+(?:%(?:c|cm|sm|y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
       }
    }
