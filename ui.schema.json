@@ -21,6 +21,9 @@
          "properties": {
             "type": {
                "$ref": "#/definitions/element_types"
+            },
+            "size": {
+               "$ref": "#/definitions/element_size"
             }
          }
       },
@@ -89,6 +92,37 @@
                "const": "selection_wheel"
             }
          ]
+      },
+      "element_size": {
+         "description": "Size of the UI element.\nPossible values:\n\"default\" (Default value, equivalent to \"100%\")\n0 (Number of pixels)\n\"0px\" (Number of pixels. Used when combining a percentage-based value with a specific pixel value, e.g. \"75% + 12px\")\n\"0%\" (Percentage relative to the parent element)\n\"0%c\" (Percentage of the total width/height of the element's children)\n\"0%cm\" (Percentage of the width/height of the largest visible child of the element)\n\"0%sm\" (Percentage of the width/height of the sibling element)\n\"0%y\" (Percentage of the element's height)\n\"0%x\" (Percentage of the element's width)\n\"fill\" (Expands to fill the remaining width/height of the parent element)",
+         "anyOf": [
+            {
+               "type": "array",
+               "minItems": 2,
+               "maxItems": 2,
+               "items": {
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/size_pattern"
+                     },
+                     {
+                        "type": "number"
+                     }
+                  ]
+               }
+            },
+            {
+               "type": "string",
+               "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "size_pattern": {
+         "type": "string",
+         "pattern": "^(?:fill|[0-9]+(?:%(?:c|cm|sm|y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
       }
    }
 }
