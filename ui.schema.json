@@ -24,6 +24,9 @@
             },
             "size": {
                "$ref": "#/definitions/element_size"
+            },
+            "offset": {
+               "$ref": "#/definitions/element_offset"
             }
          }
       },
@@ -123,6 +126,37 @@
       "size_pattern": {
          "type": "string",
          "pattern": "^(?:fill|[0-9]+(?:%(?:c|cm|sm|y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
+      },
+      "element_offset": {
+         "description": "Position of the UI element relative to the parent UI element. It's TopLeft based meaning the coordinates [0, 0] start at the top left of the screen.\n`10` - pixels\n`\"10px\"` - pixels\n`\"50%\"` - Width/height of the parent element\n`\"50%x\"` - Width of the element\n`\"50%y\"` - Height of the element",
+         "anyOf": [
+            {
+               "type": "array",
+               "minItems": 2,
+               "maxItems": 2,
+               "items": {
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/offset_pattern"
+                     },
+                     {
+                        "type": "number"
+                     }
+                  ]
+               }
+            },
+            {
+               "type": "string",
+               "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "offset_pattern": {
+         "type": "string",
+         "pattern": "^(?:fill|[0-9]+(?:%(?:y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
       }
    }
 }
