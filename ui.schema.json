@@ -106,61 +106,17 @@
       "element_sizing": {
          "size": {
             "description": "Size of the UI element.\nPossible values:\n\"default\" (Default value, equivalent to \"100%\")\n0 (Number of pixels)\n\"0px\" (Number of pixels. Used when combining a percentage-based value with a specific pixel value, e.g. \"75% + 12px\")\n\"0%\" (Percentage relative to the parent element)\n\"0%c\" (Percentage of the total width/height of the element's children)\n\"0%cm\" (Percentage of the width/height of the largest visible child of the element)\n\"0%sm\" (Percentage of the width/height of the sibling element)\n\"0%y\" (Percentage of the element's height)\n\"0%x\" (Percentage of the element's width)\n\"fill\" (Expands to fill the remaining width/height of the parent element)",
-            "anyOf": [
-               {
-                  "type": "array",
-                  "minItems": 2,
-                  "maxItems": 2,
-                  "items": {
-                     "oneOf": [
-                        {
-                           "$ref": "#/definitions/element_sizing/pattern"
-                        },
-                        {
-                           "type": "number"
-                        }
-                     ]
-                  }
-               },
-               {
-                  "type": "string",
-                  "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
-               },
-               {
-                  "type": "number"
-               }
-            ]
+            "$ref": "#/definitions/element_sizing/wrapper"
          },
          "offset": {
             "description": "Position of the UI element relative to the parent UI element. It's TopLeft based meaning the coordinates [0, 0] start at the top left of the screen.\n`10` - pixels\n`\"10px\"` - pixels\n`\"50%\"` - Width/height of the parent element\n`\"50%x\"` - Width of the element\n`\"50%y\"` - Height of the element",
-            "anyOf": [
-               {
-                  "type": "array",
-                  "minItems": 2,
-                  "maxItems": 2,
-                  "items": {
-                     "oneOf": [
-                        {
-                           "$ref": "#/definitions/element_sizing/pattern"
-                        },
-                        {
-                           "type": "number"
-                        }
-                     ]
-                  }
-               },
-               {
-                  "type": "string",
-                  "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
-               },
-               {
-                  "type": "number"
-               }
-            ]
+            "$ref": "#/definitions/element_sizing/wrapper"
          },
          "max_size": {
-            "type": "array",
             "description": "Maximum size of the UI element can have",
+            "$ref": "#/definitions/element_sizing/wrapper"
+         },
+         "wrapper": {
             "anyOf": [
                {
                   "type": "array",
@@ -169,6 +125,7 @@
                   "items": {
                      "oneOf": [
                         {
+                           "type": "string",
                            "$ref": "#/definitions/element_sizing/pattern"
                         },
                         {
@@ -178,8 +135,7 @@
                   }
                },
                {
-                  "type": "string",
-                  "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
+                  "$ref": "#/definitions/element_variable_binding"
                }
             ]
          },
