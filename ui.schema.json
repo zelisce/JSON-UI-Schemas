@@ -12,28 +12,28 @@
    },
    "patternProperties": {
       "^(?!namespace$)[A-Za-z0-9_:-]+$": {
-         "$ref": "#/definitions/element_properties"
+         "$ref": "#/definitions/properties"
       }
    },
    "definitions": {
-      "element_properties": {
+      "properties": {
          "type": "object",
          "properties": {
             "type": {
-               "$ref": "#/definitions/element_types"
+               "$ref": "#/definitions/types"
             },
             "size": {
-               "$ref": "#/definitions/element_sizing/size"
+               "$ref": "#/definitions/sizing/size"
             },
             "offset": {
-               "$ref": "#/definitions/element_sizing/offset"
+               "$ref": "#/definitions/sizing/offset"
             },
             "max_size": {
-               "$ref": "#/definitions/element_sizing/max_size"
+               "$ref": "#/definitions/sizing/max_size"
             }
          }
       },
-      "element_types": {
+      "types": {
          "type": "string",
          "description": "The type of the element.",
          "anyOf": [
@@ -99,22 +99,22 @@
             }
          ]
       },
-      "element_variable_binding": {
+      "variable_binding": {
          "type": "string",
          "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
       },
-      "element_sizing": {
+      "sizing": {
          "size": {
             "description": "Size of the UI element.\nPossible values:\n\"default\" (Default value, equivalent to \"100%\")\n0 (Number of pixels)\n\"0px\" (Number of pixels. Used when combining a percentage-based value with a specific pixel value, e.g. \"75% + 12px\")\n\"0%\" (Percentage relative to the parent element)\n\"0%c\" (Percentage of the total width/height of the element's children)\n\"0%cm\" (Percentage of the width/height of the largest visible child of the element)\n\"0%sm\" (Percentage of the width/height of the sibling element)\n\"0%y\" (Percentage of the element's height)\n\"0%x\" (Percentage of the element's width)\n\"fill\" (Expands to fill the remaining width/height of the parent element)",
-            "$ref": "#/definitions/element_sizing/wrapper"
+            "$ref": "#/definitions/sizing/wrapper"
          },
          "offset": {
             "description": "Position of the UI element relative to the parent UI element. It's TopLeft based meaning the coordinates [0, 0] start at the top left of the screen.\n`10` - pixels\n`\"10px\"` - pixels\n`\"50%\"` - Width/height of the parent element\n`\"50%x\"` - Width of the element\n`\"50%y\"` - Height of the element",
-            "$ref": "#/definitions/element_sizing/wrapper"
+            "$ref": "#/definitions/sizing/wrapper"
          },
          "max_size": {
             "description": "Maximum size of the UI element can have",
-            "$ref": "#/definitions/element_sizing/wrapper"
+            "$ref": "#/definitions/sizing/wrapper"
          },
          "wrapper": {
             "anyOf": [
@@ -126,7 +126,7 @@
                      "oneOf": [
                         {
                            "type": "string",
-                           "$ref": "#/definitions/element_sizing/pattern"
+                           "$ref": "#/definitions/sizing/pattern"
                         },
                         {
                            "type": "number"
@@ -135,7 +135,7 @@
                   }
                },
                {
-                  "$ref": "#/definitions/element_variable_binding"
+                  "$ref": "#/definitions/variable_binding"
                }
             ]
          },
