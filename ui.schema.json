@@ -27,6 +27,9 @@
             },
             "offset": {
                "$ref": "#/definitions/element_offset"
+            },
+            "max_size": {
+               "$ref": "#/definitions/element_max_size"
             }
          }
       },
@@ -157,6 +160,39 @@
       "offset_pattern": {
          "type": "string",
          "pattern": "^(?:fill|[0-9]+(?:%(?:y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
+      },
+      "element_max_size": {
+         "type": "array",
+         "description": "Maximum size of the UI element can have",
+         "default": [
+            "default",
+            "default"
+         ],
+         "anyOf": [
+            {
+               "type": "array",
+               "minItems": 2,
+               "maxItems": 2,
+               "items": {
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/max_size_pattern"
+                     },
+                     {
+                        "type": "number"
+                     }
+                  ]
+               }
+            },
+            {
+               "type": "string",
+               "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
+            }
+         ]
+      },
+      "max_size_pattern": {
+         "type": "string",
+         "pattern": "^(?:fill|default|[0-9]+(?:%(?:c|cm|sm|y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
       }
    }
 }
