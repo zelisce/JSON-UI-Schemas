@@ -99,6 +99,10 @@
             }
          ]
       },
+      "element_variable_binding": {
+         "type": "string",
+         "pattern": "^\\$|#[a-zA-Z0-9_\\-]+$"
+      },
       "element_sizing": {
          "size": {
             "description": "Size of the UI element.\nPossible values:\n\"default\" (Default value, equivalent to \"100%\")\n0 (Number of pixels)\n\"0px\" (Number of pixels. Used when combining a percentage-based value with a specific pixel value, e.g. \"75% + 12px\")\n\"0%\" (Percentage relative to the parent element)\n\"0%c\" (Percentage of the total width/height of the element's children)\n\"0%cm\" (Percentage of the width/height of the largest visible child of the element)\n\"0%sm\" (Percentage of the width/height of the sibling element)\n\"0%y\" (Percentage of the element's height)\n\"0%x\" (Percentage of the element's width)\n\"fill\" (Expands to fill the remaining width/height of the parent element)",
