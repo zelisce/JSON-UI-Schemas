@@ -1,0 +1,94 @@
+{
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+      "$schema": {
+         "type": "string"
+      },
+      "namespace": {
+         "type": "string",
+         "description": "The namespace of the file."
+      }
+   },
+   "patternProperties": {
+      "^(?!namespace$)[A-Za-z0-9_:-]+$": {
+         "$ref": "#/definitions/element_properties"
+      }
+   },
+   "definitions": {
+      "element_properties": {
+         "type": "object",
+         "properties": {
+            "type": {
+               "$ref": "#/definitions/element_types"
+            }
+         }
+      },
+      "element_types": {
+         "type": "string",
+         "description": "The type of the element.",
+         "anyOf": [
+            {
+               "const": "panel"
+            },
+            {
+               "const": "stack_panel"
+            },
+            {
+               "const": "collection_panel"
+            },
+            {
+               "const": "grid"
+            },
+            {
+               "const": "label"
+            },
+            {
+               "const": "image"
+            },
+            {
+               "const": "input_panel"
+            },
+            {
+               "const": "button"
+            },
+            {
+               "const": "toggle"
+            },
+            {
+               "const": "dropdown"
+            },
+            {
+               "const": "slider"
+            },
+            {
+               "const": "slider_box"
+            },
+            {
+               "const": "edit_box"
+            },
+            {
+               "const": "scroll_view"
+            },
+            {
+               "const": "scrollbar_track"
+            },
+            {
+               "const": "scrollbar_box"
+            },
+            {
+               "const": "factory"
+            },
+            {
+               "const": "screen"
+            },
+            {
+               "const": "custom"
+            },
+            {
+               "const": "selection_wheel"
+            }
+         ]
+      }
+   }
+}
