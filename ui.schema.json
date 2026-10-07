@@ -164,10 +164,6 @@
       "element_max_size": {
          "type": "array",
          "description": "Maximum size of the UI element can have",
-         "default": [
-            "default",
-            "default"
-         ],
          "anyOf": [
             {
                "type": "array",
