@@ -109,7 +109,7 @@
                "items": {
                   "oneOf": [
                      {
-                        "$ref": "#/definitions/size_pattern"
+                        "$ref": "#/definitions/sizing_pattern"
                      },
                      {
                         "type": "number"
@@ -125,10 +125,6 @@
                "type": "number"
             }
          ]
-      },
-      "size_pattern": {
-         "type": "string",
-         "pattern": "^(?:fill|[0-9]+(?:%(?:c|cm|sm|y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
       },
       "element_offset": {
          "description": "Position of the UI element relative to the parent UI element. It's TopLeft based meaning the coordinates [0, 0] start at the top left of the screen.\n`10` - pixels\n`\"10px\"` - pixels\n`\"50%\"` - Width/height of the parent element\n`\"50%x\"` - Width of the element\n`\"50%y\"` - Height of the element",
@@ -140,7 +136,7 @@
                "items": {
                   "oneOf": [
                      {
-                        "$ref": "#/definitions/offset_pattern"
+                        "$ref": "#/definitions/sizing_pattern"
                      },
                      {
                         "type": "number"
@@ -156,10 +152,6 @@
                "type": "number"
             }
          ]
-      },
-      "offset_pattern": {
-         "type": "string",
-         "pattern": "^(?:fill|[0-9]+(?:%(?:y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
       },
       "element_max_size": {
          "type": "array",
@@ -172,7 +164,7 @@
                "items": {
                   "oneOf": [
                      {
-                        "$ref": "#/definitions/max_size_pattern"
+                        "$ref": "#/definitions/sizing_pattern"
                      },
                      {
                         "type": "number"
@@ -186,7 +178,7 @@
             }
          ]
       },
-      "max_size_pattern": {
+      "sizing_pattern": {
          "type": "string",
          "pattern": "^(?:fill|default|[0-9]+(?:%(?:c|cm|sm|y|x)?|px)(?:\\s*[+\\-*/]\\s*[0-9]+(?:%(?:c|cm|sm|y|x)?|px))*)$"
       }
